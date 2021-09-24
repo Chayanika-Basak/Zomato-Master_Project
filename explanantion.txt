@@ -1,0 +1,8 @@
+Middleware Application
+
+CORS -> Cross Origin Request -> API request will be accepted otherwise the 
+server will block the request
+
+Our own server should be able to serve requests coming from other servers
+
+HELMET -> adds security to our server
