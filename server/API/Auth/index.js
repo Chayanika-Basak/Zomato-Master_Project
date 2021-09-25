@@ -9,7 +9,7 @@ const Router = express.Router();
 
 /*
 Route: /signup
-Des: Register new user with email and password
+Des: Register new user with email and phonenumber
 Params: none
 Access: Public
 Method: POST
@@ -35,23 +35,20 @@ Router.post("/signup", async (req,res) => {
 });
 
 /*
-Route: /signup
-Des: signup with email and password
+Route: /signin
+Des: signin with email and password
 Params: none
 Access: Public
 Method: POST
 */
 
-Router.post("/signup", async (req,res) => {
+Router.post("/signin", async (req,res) => {
     try{
         //check whether email or phone number exists
-        await UserModel.findByEmailAndPhone(req.body.credentials);
-
-        //save to DB
-        const newUser = await UserModel.create(req.body.credentials);
+        const user = await UserModel.findByEmailAndPassword(req.body.credentials);
         
         //generate jwt auth token
-        const token = newUser.generateJwtToken();
+        const token = user.generateJwtToken();
 
         //return
         return res.status(200).json({token, status:"Success"});

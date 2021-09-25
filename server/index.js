@@ -14,7 +14,7 @@ zomato.use(cors());
 
 zomato.use("/auth", Auth);
 
-zomato.get("/", (req,res) => res.json({message: "SetUp Successfull😋 Hihi"}));
+zomato.get("/", (req,res) => res.json({message: "SetUp Successfull🤩"}));
 
 zomato.listen(4000, () => 
 ConnectDB().then(() => console.log("Server is Running!!😎"))
