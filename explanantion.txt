@@ -6,3 +6,18 @@ server will block the request
 Our own server should be able to serve requests coming from other servers
 
 HELMET -> adds security to our server
+
+PLANNING ->
+-Auth
+-Foods
+-Restaurants
+-Menu
+-Order
+-Payments- razorpay
+-reviews
+-user
+-image
+
+//pre is a function called at a particular stage of transaction of data
+//we are executing pre at the "save" or create stage
+//next method refers to the series of function mongoose has to execute next

@@ -9,6 +9,9 @@ const ReviewsSchema = new mongoose.Schema({
     photos: [{
         type: mongoose.Types.ObjectId, ref: "Images"
     }]
+},
+{
+    timestamps: true
 })
 
 export const ReviewsModel = mongoose.model("Reviews", ReviewsSchema);
