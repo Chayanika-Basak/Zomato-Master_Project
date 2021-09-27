@@ -5,6 +5,8 @@ import helmet from 'helmet';
 import ConnectDB from './database/connection';
 import Auth from './API/Auth/index';
 import Restaurant from './API/Restaurant/index'
+import Food from './API/Food/index'
+import Menu from './API/Menu/index'
 import passport from 'passport';
 import googleAuthConfig from './config/Google.config';
 
@@ -19,6 +21,8 @@ zomato.use(passport.session());
 googleAuthConfig(passport);
 zomato.use("/auth", Auth);
 zomato.use("/restaurant", Restaurant);
+zomato.use("/food", Food);
+zomato.use("/menu", Menu);
 
 zomato.get("/", (req,res) => res.json({message: "SetUp Successfull🤩"}));
 

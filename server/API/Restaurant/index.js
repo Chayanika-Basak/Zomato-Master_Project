@@ -26,12 +26,12 @@ Router.get("/", async (req, res) => {
 /*
 Route     /
 Des       Get individual restaurant details based on id
-Params    id
+Params    _id
 Access    Public
 Method    GET  
 */
 
-Router.get("/:id", async (req, res) => {
+Router.get("/:_id", async (req, res) => {
     try{
         const { _id } = req.params;
         const restaurants = await RestaurantModel.findOne(_id);
