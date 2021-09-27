@@ -1,6 +1,6 @@
 import express from 'express';
 import passport from 'passport';
-import {RestaurantModel} from '../../database/allModels';
+import {FoodModel} from '../../database/allModels';
 
 const Router = express.Router();
 

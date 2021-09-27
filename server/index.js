@@ -4,6 +4,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import ConnectDB from './database/connection';
 import Auth from './API/Auth/index';
+import Restaurant from './API/Restaurant/index'
 import passport from 'passport';
 import googleAuthConfig from './config/Google.config';
 
@@ -17,7 +18,7 @@ zomato.use(passport.initialize());
 zomato.use(passport.session());
 googleAuthConfig(passport);
 zomato.use("/auth", Auth);
-
+zomato.use("/restaurant", Restaurant);
 
 zomato.get("/", (req,res) => res.json({message: "SetUp Successfull🤩"}));
 
