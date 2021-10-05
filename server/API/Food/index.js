@@ -4,6 +4,9 @@ import {FoodModel} from '../../database/allModels';
 
 const Router = express.Router();
 
+//validation
+import { ValidateRestaurantId, Validatecategory } from '../../Validation/Food';
+
 /*
 Route     /
 Des       Get all food based on particular restaurant
@@ -14,6 +17,8 @@ Method    GET
 
 Router.get("/r/:_id", async (req, res) => {
     try{
+        await ValidateRestaurantId(req.params);
+
         const { _id } = req.params;
         const foods = await FoodModel.find({restaurant: _id});
         return res.json({foods})
@@ -32,6 +37,8 @@ Method    GET
 
 Router.get("/c/category", async (req, res) => {
     try{
+        await Validatecategory(req.params);
+
         const { category } = req.params;
         const foods = await FoodModel.find({category:{$regex: category, $options: "i"}});
         return res.json({foods})

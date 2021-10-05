@@ -2,6 +2,9 @@ import express from 'express';
 import passport from 'passport';
 import {OrderModel} from '../../database/allModels';
 
+//validation
+import { ValidateOrderId, ValidateOrderDetails } from '../../Validation/Orders';
+
 const Router = express.Router();
 
 /*
@@ -12,8 +15,10 @@ Access    Public
 Method    GET  
 */
 
-Router.get("/:_id", async (req, res) => {
+Router.get("/:_id", passport.authenticate("jwt", {session: false}), async (req, res) => {
     try{
+        await ValidateOrderId(req.params);
+
         const {_id} = req.params;
         const getOrders = await OrderModel.find({user: _id});
         if(!getOrders){
@@ -36,6 +41,9 @@ Method    POST
 
 Router.post("/:_id", async (req, res) => {
     try{
+        await ValidateOrderId(req.params);
+        await ValidateOrderDetails(req.body);
+
         const {_id} = req.params;
         const {orderDetails} = req.body;
 

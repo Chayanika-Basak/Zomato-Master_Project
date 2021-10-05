@@ -22,6 +22,7 @@ import passport from 'passport';
 
 //Google auth config
 import googleAuthConfig from './config/Google.config';
+import RouteConfig from './config/Route.config';
 
 //initializing express
 const zomato = express();
@@ -37,7 +38,7 @@ zomato.use(session({
 }));
 zomato.use(passport.initialize());
 zomato.use(passport.session());
-googleAuthConfig(passport);
+
 zomato.use("/auth", Auth);
 zomato.use("/restaurant", Restaurant);
 zomato.use("/food", Food);
@@ -45,6 +46,9 @@ zomato.use("/menu", Menu);
 zomato.use("/image", Image);
 zomato.use("/orders", Orders);
 zomato.use("/reviews", Reviews);
+
+googleAuthConfig(passport);
+RouteConfig(passport);
 
 zomato.get("/", (req,res) => res.json({message: "SetUp Successfull🤩"}));
 

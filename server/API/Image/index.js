@@ -11,7 +11,6 @@ import { s3Upload } from '../../Utils/AWS/S3';
 //multer config
 const storage = multer.memoryStorage();
 const upload = multer({storage});
-//Upload to S3
 
 /*
 Route     /
@@ -26,16 +25,6 @@ Router.post("/", upload.array(["file","file1","file2","file3"], 4) ,async (req, 
     try{
         const file = req.files;
 
-        //S3 bucket options
-        // const bucketOptions = {
-        //     Bucket: "bucketName",
-        //     Key: file.originalname,
-        //     Body: file.buffer,
-        //     ContentType: file.mimetype,
-        //     ACL: "public-read"
-        //     //ACL -> Access Control List
-        // };
-
         const uploadImage = await s3Upload(bucketOptions);
 
         return res.status(200).json({uploadImage: "YAY!!🤘🏻"});
@@ -46,3 +35,27 @@ Router.post("/", upload.array(["file","file1","file2","file3"], 4) ,async (req, 
 });
 
 export default Router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+S3 bucket options
+const bucketOptions = {
+    Bucket: "bucketName",
+    Key: file.originalname,
+    Body: file.buffer,
+    ContentType: file.mimetype,
+    ACL: "public-read"
+    //ACL -> Access Control List
+};
+*/
