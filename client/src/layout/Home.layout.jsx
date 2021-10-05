@@ -5,8 +5,8 @@ const HomeLayout = (props) => {
     return (
     <>
     <Navbar />
-    {props.children}
     <FoodTab/>
+    {props.children}    
     </>
     );
 }
