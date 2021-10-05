@@ -4,7 +4,7 @@ import React from 'react'
 import {FaUserAlt} from 'react-icons/fa'
 import {HiLocationMarker} from 'react-icons/hi'
 import {IoMdArrowDropdown, IoMdArrowDropup} from 'react-icons/io'
-import {BsSearch} from 'react-icons/bs'
+import {RiSearchLine} from 'react-icons/ri'
 
 const MobileTabletNavbar = () => {
 return(
@@ -20,7 +20,7 @@ return(
 
         <div className="flex items-center">
             <div className="w-20">
-                <button className="h-full bg-coral-400 rounded-full text-white text-bold px-2 py-2 text-xs text-medium">
+                <button className="h-full bg-coral-400 rounded-full text-white font-semibold px-2 py-2 text-xs text-medium">
                     Use App
                 </button>
             </div>
@@ -38,23 +38,23 @@ return(
 const LaptopNavbar = () => {
     return(
         <>
-            <div className="hidden lg:flex w-full items-center justify-between">
-                <div className="w-32 ml-12">
+            <div className="hidden lg:flex w-full items-center justify-evenly">
+                <div className="w-32 ml-10">
                     <img 
                     src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png"
                     alt="logo"
                     className="w-full h-full"
                     />
                 </div>
-                <div className="flex items-center w-3/5 rounded-lg shadow-md py-3 pl-2 border border-gray-200 gap-2">
+                <div className="flex items-center w-3/5 rounded-lg shadow-md pl-2 border border-gray-200 gap-2">
                     <span className="text-2xl text-coral-300">
                     <HiLocationMarker/>
                     </span>
                     <div className="w-1/2 text-sm">
                     <input type="text" placeholder="National Capital Region (NCR)" className="w-full"/>
                     </div>
-                    <IoMdArrowDropdown className="text-3xl text-gray-600 pr-2 border-r-2 border-gray-300"/>
-                    <BsSearch className="text-2xl text-gray-600 ml-2"/>
+                    <IoMdArrowDropdown className="text-5xl text-gray-600 pr-2 border-r-2 border-gray-300"/>
+                    <RiSearchLine className="text-4xl text-gray-600 ml-2"/>
                     <div className="w-full px-2">
                     <input type="text" placeholder="Search for restaurant, cuisine or a dish" className="w-full"/>
                     </div>
