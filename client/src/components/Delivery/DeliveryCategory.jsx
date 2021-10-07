@@ -1,20 +1,47 @@
 import React from 'react'
 
-const DeliveryCategory = () => {
-    return (
-        <div>
-            <div classname="bg-white">
-                <div className="w-full h-24">
-                    <img src="https://b.zmtcdn.com/data/o2_assets/d0bd7c9405ac87f6aa65e31fe55800941632716575.png"
-                    alt="Pizza"
-                    className="h-full w-full object-cover"
+const DeliverySmCard = ({image, title}) => {
+    return(
+        <>
+            <div className="lg:hidden g-white shadow rounded-md my-2">
+                <div className="w-24 md:w-56 h-20">
+                    <img src={image}
+                    alt={title}
+                    className="h-full w-full rounded-t-md object-cover"
                     />
                 </div>
                 <div>
-                    <h3 className="text-base font-medium">Pizza</h3>
+                    <h3 className="text-sm my-1 text-center font-light">{title}</h3>
                 </div>
             </div>
-        </div>
+        </>
+    )
+}
+
+const DeliveryLgCard = ({image, title}) => {
+    return(
+        <>
+            <div className="hidden lg:block bg-gray-100">
+                <div className="w-64 h-48">
+                    <img src={image}
+                    alt={title}
+                    className="h-full w-full shadow rounded-md object-cover"
+                    />
+                </div>
+                <div>
+                    <h3 className="text-2xl my-1 text-gray-700 pl-1">{title}</h3>
+                </div>
+            </div>
+        </>
+    )
+}
+
+const DeliveryCategory = (props) => {
+    return (
+        <>
+            <DeliverySmCard {...props}/>
+            <DeliveryLgCard {...props}/>
+        </>
     )
 }
 
