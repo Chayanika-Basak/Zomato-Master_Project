@@ -33,12 +33,12 @@ const Delivery = () => {
                 </button>
 
             </div>
-
-            <h1 className="lg:bg-gray-100 text-xl lg:text-3xl pl-4 font-medium lg:pl-20 lg:pt-12">
-                Inspiration for your first order
-            </h1>
-            
-            <DeliveryCarousal/>
+            <div className="lg:bg-gray-100">
+                <h1 className="text-xl lg:text-3xl pl-4 font-medium lg:pl-20 lg:pt-12">
+                    Inspiration for your first order
+                </h1>
+                <DeliveryCarousal/>
+            </div>
         </>
     )
 }

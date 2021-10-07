@@ -1,11 +1,12 @@
 import React from 'react'
-import DeliveryCategory from './DeliveryCategory';
+import {DeliverySmCard, DeliveryLgCard} from './DeliveryCategory';
 import Slider from 'react-slick'
 import { PrevArrow, NextArrow } from '../CarouselArrow';
 
 const DeliveryCarousal = () => {
     const settings = {
         arrows: true,
+        infinite: false,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
@@ -65,32 +66,30 @@ const DeliveryCarousal = () => {
         }
     ]
     return(
-        <>
-            
+        <>    
+            <div className="lg:hidden flex flex-wrap justify-evenly gap-1 py-2">
+                {
+                    categories.map
+                    (
+                        (food) => <DeliverySmCard {...food}/>
+                        
+                    )
+                }
                 
-                <div className="lg:hidden flex flex-wrap justify-evenly gap-1 py-2">
+            </div>
+            <div className="hidden bg-gray-100 lg:block gap-1 pl-10 pt-6 pb-2 w-full">
+                <Slider {...settings}>
                     {
                         categories.map
                         (
-                            (food) => <DeliveryCategory {...food}/>
+                            (food) => (
+                                <DeliveryLgCard {...food}/>
+                            )
                             
                         )
                     }
-                    
-                </div>
-                <div className="hidden bg-gray-100 lg:block gap-1 pl-10 pt-6 pb-2">
-                     <Slider {...settings}>
-                        {
-                                categories.map
-                                (
-                                    (food) => (
-                                        <DeliveryCategory {...food}/>
-                                    )
-                                    
-                                )
-                        }
-                    </Slider>
-                </div>
+                </Slider>
+            </div>
             
         </>
 
