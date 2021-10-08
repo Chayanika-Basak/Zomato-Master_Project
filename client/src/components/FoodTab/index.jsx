@@ -88,7 +88,7 @@ const LaptopTabs = () => {
                 name: "Nightlife"
             },
             {
-                id: `nutition`,
+                id: `nutrition`,
                 imageDefault: "https://b.zmtcdn.com/data/o2_assets/54cad8274d3c3ec7129e0808a13b27c31616582882.png",
                 imageActive: "https://b.zmtcdn.com/data/o2_assets/0f6dcb1aef93fa03ea3f91f37918f3bc1616649503.png",
                 activeColor: "yellow",
@@ -101,7 +101,7 @@ const LaptopTabs = () => {
 
     return(
         <>
-            <div className="container mx-auto p-4 ml-20 hidden lg:flex items-center gap-8 mt-4">
+            <div className="pt-4 ml-20 hidden lg:flex items-center gap-8 mt-4">
                 {allTypes.map((items) => (
                     <Link to={`${items.id}`}>
                         <div className=

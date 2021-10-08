@@ -4,9 +4,17 @@ import Navbar from '../components/Navbar';
 const HomeLayout = (props) => {
     return (
     <>
-    <Navbar />
-    <FoodTab/>
-    {props.children}    
+        <div className="hidden lg:block">
+            <Navbar />
+            <FoodTab/>
+            {props.children}  
+        </div>
+        <div className="lg:hidden">
+            <Navbar />
+            {props.children}  
+            <FoodTab/>
+        </div>
+      
     </>
     );
 }

@@ -1,15 +1,14 @@
-import React,{useState} from 'react'
-import DeliveryCarousal from './DeliveryCarousal';
-import Brand from './Brand';
-import RestaurantCard from '../RestaurantCard';
+import React, {useState} from 'react'
+import DiningCarousal from './DiningCarousel'
 
 //icons
 import {GiSettingsKnobs} from 'react-icons/gi'
 import {BsChevronDown, BsArrowDownUp} from 'react-icons/bs'
+import {RiArrowRightSFill} from 'react-icons/ri'
+import RestaurantCard from '../RestaurantCard'
 
+const Dining = () => {
 
-
-const Delivery = () => {
     const [restaurantList, setRestaurantList] = useState([
         {
             _id: "123456",
@@ -91,9 +90,29 @@ const Delivery = () => {
         }
     ]);
 
-    return(
+    return (
         <>
-            <div className="hidden lg:flex items-center pl-20 gap-4 border-t border-gray-300 py-6">
+            <div className="lg:hidden">
+                <a href="/dining" className="text-xl pl-4 font-medium hover:text-coral-400">
+                    Dining
+                </a>
+                <a href="/nightlife" className="text-xl pl-4 font-medium hover:text-coral-400">
+                    Nightlife
+                </a>
+            </div>
+        <div className="bg-gray-100 border-t border-t-gray-200 pb-12">
+            <h1 className="text-3xl mt-6 lg:ml-20 ml-6">Collections</h1>
+            <div className="flex items-center justify-between lg:mr-16 mr-6 mt-8 mb-4">
+                <h2 className="text-lg mt-2 text-gray-600 font-light lg:ml-20 ml-6">
+                    Explore curated lists of top restaurants, cafes, pubs, and bars in Delhi NCR, based on trends
+                </h2>
+                <a href="/#" className="flex items-center text-coral-300 text-md font-light hover:text-coral-500">All collections in Delhi NCR  <RiArrowRightSFill className="text-2xl pt-1"/></a>
+            </div>
+            <div className="lg:mx-16 mx-12">
+                <DiningCarousal/>
+            </div>
+        </div>
+        <div className="flex lg:items-center flex-wrap pl-20 gap-4 py-6 my-6">
 
                 <button className="rounded-md hover:bg-gray-100 border text-gray-400 border-gray-400 px-2 py-1">
                     <div className="flex items-center gap-2">
@@ -102,14 +121,20 @@ const Delivery = () => {
                 </button>
 
                 <button className="rounded-md hover:bg-gray-100 border text-gray-400 border-gray-400 px-2 py-1">
-                    <div className="flex items-center gap-2">
-                        <BsArrowDownUp/> Delivery Time
+                    <div className="flex items-center">
+                        Pro Offers <BsChevronDown/>
                     </div>
                 </button>
 
-                <button className="rounded-md hover:bg-gray-100 border text-gray-400 border-gray-400 px-2 py-1">Pure Veg</button>
+                <button className="rounded-md hover:bg-gray-100 border text-gray-400 border-gray-400 px-2 py-1">
+                    <div className="flex items-center gap-2">
+                        <BsArrowDownUp/> Distance
+                    </div>
+                </button>
+
+                <button className="rounded-md hover:bg-gray-100 border text-gray-400 border-gray-400 px-2 py-1">Online Bookings</button>
+                <button className="rounded-md hover:bg-gray-100 border text-gray-400 border-gray-400 px-2 py-1">Outdoor Seating</button>
                 <button className="rounded-md hover:bg-gray-100 border text-gray-400 border-gray-400 px-2 py-1">Rating: 4.0+</button>
-                <button className="rounded-md hover:bg-gray-100 border text-gray-400 border-gray-400 px-2 py-1">Great Offers</button>
 
                 <button className="rounded-md hover:bg-gray-100 border text-gray-400 border-gray-400 px-2 py-1">
                     <div className="flex items-center">
@@ -117,35 +142,20 @@ const Delivery = () => {
                     </div>
                 </button>
 
+                <button className="rounded-md hover:bg-gray-100 border text-gray-400 border-gray-400 px-2 py-1">Cafes</button>
+                <button className="rounded-md hover:bg-gray-100 border text-gray-400 border-gray-400 px-2 py-1">Open Now</button>
+
             </div>
-            <div>
-                <div className="lg:bg-gray-100">
-                    <h1 className="lg:bg-gray-100 text-xl lg:text-3xl pl-4 font-medium lg:pl-20 lg:pt-12">
-                        Inspiration for your first order
-                    </h1>
-                    <div className="lg:mx-16">
-                        <DeliveryCarousal/>
-                    </div>
-                </div>
-                <h1 className="text-xl lg:text-3xl pl-4 font-medium lg:pl-20 pt-8 lg:pt-12">
-                    Top Brands for you
-                </h1>
-                <div className="lg:mx-16 mx-10">
-                    <Brand/>
-                </div>
-                <h1 className="text-xl lg:text-3xl pl-4 font-medium lg:pl-20 pt-8 lg:pt-12">
-                    Best Food in Delhi NCR
-                </h1>
-                <div className="flex flex-wrap justify-evenly">
-                    {
-                        restaurantList.map((restaurant) => (
-                            <RestaurantCard {...restaurant} key={restaurant._id}/>
-                        ))
-                    }
-                </div>
-            </div>
+        <h1 className="text-3xl ml-20">Dine-Out Restaurants in Safdarjung</h1>
+        <div className="flex flex-wrap justify-evenly">
+            {
+                restaurantList.map((restaurant) => (
+                    <RestaurantCard {...restaurant} key={restaurant._id}/>
+                ))
+            }
+        </div>
         </>
     )
 }
 
-export default Delivery;
+export default Dining

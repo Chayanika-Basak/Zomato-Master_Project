@@ -14,29 +14,63 @@ const Brand = (props) => {
         "https://b.zmtcdn.com/data/brand_creatives/logos/84edd5489389f21069c09f0c88ea8abb_1628179220.png?output-format=webp",
         "https://b.zmtcdn.com/data/brand_creatives/logos/d46560ce3d7b84605cab233c5abc65f3_1625165852.png?output-format=webp",
     ]
-    const settings = {
+    const LGsettings = {
         arrows: true,
         infinite: false,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        nextArrow: <NextArrow/>,
+        prevArrow: <PrevArrow/>
+    };
+
+    const SMsettings = {
+        arrows: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 3,
         slidesToScroll: 1,
         nextArrow: <NextArrow/>,
         prevArrow: <PrevArrow/>
     };
 
     return (
-        <>
-            <Slider {...settings}>
-                {
-                    logos.map((logo) => (
-                <div className="w-24 h-24">
-                    <img src={props.image}
-                    alt={props.title}
-                    className="w-full h-full"
-                    />
-                </div>))
-                }
-            </Slider>
+        <>  <div className="hidden lg:block mt-10">
+                <Slider {...LGsettings}>
+                    {
+                        logos.map
+                        (
+                            (logo) => 
+                            (
+                                <div className="w-64 h-36">
+                                    <img src={logo}
+                                    alt="Brand"
+                                    className="w-36 h-full rounded-xl shadow-lg"
+                                    />
+                                </div>
+                            )
+                        )
+                    }
+                </Slider>
+            </div>
+            <div className="lg:hidden mt-8 gap-3">
+                <Slider {...SMsettings}>
+                    {
+                        logos.map
+                        (
+                            (logo) => 
+                            (
+                                <div className="w-64 h-36 p-4">
+                                    <img src={logo}
+                                    alt="Brand"
+                                    className="w-36 h-full rounded-xl shadow-lg"
+                                    />
+                                </div>
+                            )
+                        )
+                    }
+                </Slider> 
+            </div>
         </>
     )
 }

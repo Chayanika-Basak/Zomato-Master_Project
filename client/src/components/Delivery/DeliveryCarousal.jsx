@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {DeliverySmCard, DeliveryLgCard} from './DeliveryCategory';
 import Slider from 'react-slick'
 import { PrevArrow, NextArrow } from '../CarouselArrow';
 
+import {BsChevronDown, BsChevronUp} from 'react-icons/bs'
+
 const DeliveryCarousal = () => {
+
     const settings = {
         arrows: true,
         infinite: false,
@@ -65,19 +68,45 @@ const DeliveryCarousal = () => {
             title: "Biriyani"
         }
     ]
+
+    const [readMore,setReadMore]=useState(false);
+    const extraContent=<div className="extra-content">
+        <div className="lg:hidden flex flex-wrap justify-evenly gap-1 py-2">
+            {
+                categories.map(
+                    (food) => <DeliverySmCard {...food}/>
+                )
+            }
+        </div>
+    </div>
+    const linkName=readMore?'see less':'see more'
+    const iconName=readMore?<BsChevronUp/>:<BsChevronDown/>
+
     return(
-        <>    
-            <div className="lg:hidden flex flex-wrap justify-evenly gap-1 py-2">
-                {
-                    categories.map
-                    (
-                        (food) => <DeliverySmCard {...food}/>
-                        
-                    )
-                }
+        <>  
+            <div className="lg:hidden">  
+                <div className="lg:hidden flex flex-wrap justify-evenly gap-1 py-2">
+                    {
+                        categories.slice(0,6).map
+                        (
+                            (food) => <DeliverySmCard {...food}/>
+                            
+                        )
+                    }
+                
+                </div>     
+
+                {/* Read More  */}  
+                <div className="ReadButton">
+                    {readMore && extraContent}
+                    <button className="w-5/6 mx-4 rounded-md read-more-link border-2 border-gray-100 px-1" 
+                        onClick={()=>{setReadMore(!readMore)}}>
+                            <h2 className="flex items-center justify-center gap-2 text-gray-600">{linkName} {iconName}</h2>
+                    </button>
+                </div>
                 
             </div>
-            <div className="hidden bg-gray-100 lg:block gap-1 pl-10 pt-6 pb-2 w-full">
+            <div className="hidden bg-gray-100 lg:block gap-1 pt-6 pb-10 w-full">
                 <Slider {...settings}>
                     {
                         categories.map
