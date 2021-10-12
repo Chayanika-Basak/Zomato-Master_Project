@@ -12,7 +12,7 @@ const NutritionCard = ({ image, title }) => {
           />
         </div>
         <div>
-          <h3 className="text-sm my-1 text-center font-light md:text-xl">
+          <h3 className="text-sm my-1 text-center font-light md:text-lg pb-4">
             {title}
           </h3>
         </div>

@@ -1,11 +1,15 @@
 import React, {useState} from 'react'
 import DiningCarousal from '../Dining/DiningCarousel'
+import { Link, useParams } from 'react-router-dom'
+import classnames from 'classnames'
+import RestaurantCard from '../RestaurantCard'
+import ButtonsCarousel from '../ButtonsCarousel'
 
 //icons
 import {GiSettingsKnobs} from 'react-icons/gi'
 import {BsChevronDown, BsArrowDownUp} from 'react-icons/bs'
 import {RiArrowRightSFill} from 'react-icons/ri'
-import RestaurantCard from '../RestaurantCard'
+
 
 
 const NightLife = () => {
@@ -90,29 +94,64 @@ const NightLife = () => {
         }
     ]);
 
+    const [allTypes, setAllTypes] = useState(
+        [
+            {
+                id: `dining`,
+                name: "Dining Out"
+            },
+            { 
+                id: `nightlife`,
+                name: "Nightlife"
+            },
+            { 
+                id: `nutrition`,
+                name: "Nutrition"
+            }
+            
+        ]
+    )
+    
+    const {type} = useParams();
+
     return (
         <>
-            <div className="lg:hidden">
-                <a href="/dining" className="text-xl pl-4 font-medium hover:text-coral-400">
-                    Dining
-                </a>
-                <a href="/nightlife" className="text-xl pl-4 font-medium hover:text-coral-400">
-                    Nightlife
-                </a>
+            <div className="lg:hidden flex items-center mt-2 md:mt-6 mb-8">
+            {allTypes.map((items) => (
+                    <Link to={`${items.id}`}>
+                        <span className=
+                            {
+                                classnames("text-base md:text-xl ml-4 pb-2 font-medium text-gray-500 transition duration-700 ease-in-out", {
+                                    "border-b-2 border-gray-900 text-coral-400" : type === items.id
+                                })
+                            }
+                        >
+                         {items.name}   
+                        </span>
+                    </Link> 
+                ))}
+            </div>
+            <div className="mx-4">
+                <ButtonsCarousel/>
             </div>
         <div className="bg-gray-100 border-t border-t-gray-200 pb-12">
-            <h1 className="text-3xl mt-6 ml-20">Collections</h1>
-            <div className="flex items-center justify-between mr-16 mt-8 mb-4">
-                <h2 className="text-lg mt-2 text-gray-600 font-light ml-20">
+            <div className="flex items-center justify-between">
+                <h1 className="text-xl md:text-3xl mt-6 lg:ml-20 ml-6">Collections</h1>
+                <a href="/#" className="flex md:hidden items-center mt-6 text-coral-300 text-md font-light hover:text-coral-500">
+                    All collections in Delhi NCR  <RiArrowRightSFill className="text-2xl pt-1"/>
+                </a>
+            </div>
+            <div className="flex items-center justify-between lg:mr-16 mr-6 md:mt-8 mb-4">
+                <h2 className="text-sm md:text-lg mt-2 text-gray-600 font-light lg:ml-20 ml-6">
                     Explore curated lists of top restaurants, cafes, pubs, and bars in Delhi NCR, based on trends
                 </h2>
-                <a href="/#" className="flex items-center text-coral-300 text-md font-light hover:text-coral-500">All collections in Delhi NCR  <RiArrowRightSFill className="text-2xl pt-1"/></a>
+                <a href="/#" className="hidden md:flex items-center text-coral-300 text-md font-light hover:text-coral-500">All collections in Delhi NCR  <RiArrowRightSFill className="text-2xl pt-1"/></a>
             </div>
-            <div className="mx-16">
+            <div className="lg:mx-16 md:mx-12 mr-6">
                 <DiningCarousal/>
             </div>
         </div>
-        <div className="hidden lg:flex items-center pl-20 gap-4 py-6 my-6">
+        <div className="hidden md:flex items-center pl-12 lg:pl-20 gap-4 py-6 my-6">
 
                 <button className="rounded-md hover:bg-gray-100 border text-gray-400 border-gray-400 px-2 py-1">
                     <div className="flex items-center gap-2">
@@ -136,7 +175,7 @@ const NightLife = () => {
                 <button className="rounded-md hover:bg-gray-100 border text-gray-400 border-gray-400 px-2 py-1">Pubs & Bars</button>
 
             </div>
-        <h1 className="text-3xl ml-20">Dine-Out Restaurants in Safdarjung</h1>
+        <h1 className="text-2xl ml-10 mt-6 md:text-3xl md:ml-20">Nightlife Restaurants in Safdarjung</h1>
         <div className="flex flex-wrap justify-evenly">
             {
                 restaurantList.map((restaurant) => (

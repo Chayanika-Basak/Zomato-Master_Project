@@ -5,7 +5,7 @@ const RestaurantCard = (props) => {
     return (
         <>
             <div className="bg-white m-1 p-1 w-full md:w-1/4 lg:w-1/4 transition duration-400 ease-in-out my-6 rounded-xl hover:border-gray-300 hover:shadow-xl">
-                <div className="w-full h-52 lg:w-56 relative">
+                <div className="w-full h-52 lg:h-56 relative">
                     <div className="absolute w-full flex items-end justify-between bottom-4">
                         <div className="flex flex-col gap-2 items-start">
                             {props.isPro && (

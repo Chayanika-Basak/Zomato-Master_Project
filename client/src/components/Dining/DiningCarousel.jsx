@@ -29,14 +29,15 @@ const DiningCarousal = () => {
         breakpoint: 768,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
+          slidesToScroll: 2,
           initialSlide: 2,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          arrows:false,
+          slidesToShow: 1.5,
           slidesToScroll: 1,
         },
       },
