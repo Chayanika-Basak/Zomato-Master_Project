@@ -17,7 +17,11 @@ import { getReviews } from "../../Redux/Reducer/Reviews/review.action";
 
 
 const Overview = () => {
-  const [menuImage, setMenuImages] = useState({ images: [] });
+  const [menuImage, setMenuImages] = useState({ images: [
+    {location:"https://b.zmtcdn.com/data/menus/396/19683396/ff7241696ca091b9c526747b0692daeb.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"},
+    {location: "https://b.zmtcdn.com/data/pictures/chains/8/311638/be8965d3b245393bc7f3b309990cadad_featured_v2.jpg?output-format=webp"},
+    {location: "https://b.zmtcdn.com/data/pictures/chains/0/19527780/b65afc317042131d46ab2de32ffe0e8a_featured_v2.jpg?output-format=webp"}
+  ] });
   const [Reviews, setReviewss] = useState([]);
 
   const { id } = useParams();
@@ -26,8 +30,8 @@ const Overview = () => {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 3,
+    slidesToScroll: 3,
     initialSlide: 0,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
