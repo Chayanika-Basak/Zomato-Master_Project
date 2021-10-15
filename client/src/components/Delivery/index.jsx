@@ -1,4 +1,6 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
+import { useSelector } from "react-redux";
+
 import DeliveryCarousal from './DeliveryCarousal';
 import Brand from './Brand';
 import RestaurantCard from '../RestaurantCard';
@@ -91,6 +93,14 @@ const Delivery = () => {
         }
     ]);
 
+    const reduxState = useSelector(
+        (globalStore) => globalStore.restaurant.restaurants
+      );
+    
+      useEffect(() => {
+        reduxState.restaurants && setRestaurantList(reduxState.restaurants);
+      }, [reduxState.restaurants]);
+    
     return(
         <>
             <div className="hidden lg:flex items-center pl-20 gap-4 border-t border-gray-300 py-6">
@@ -139,7 +149,11 @@ const Delivery = () => {
                 <div className="flex flex-wrap justify-evenly">
                     {
                         restaurantList.map((restaurant) => (
-                            <RestaurantCard {...restaurant} key={restaurant._id}/>
+                            <RestaurantCard
+                                {...restaurant}
+                                key={restaurant._id}
+                                whereIsthisres="asf"
+                            />
                         ))
                     }
                 </div>

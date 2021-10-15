@@ -1,22 +1,32 @@
-import React from 'react'
-import {useParams} from 'react-router-dom'
-import Delivery from '../components/Delivery';
-import Dining from '../components/Dining';
-import NightLife from '../components/Nightlife';
-import Nutrition from '../components/Nutrition';
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+// components
+import Delivery from "../components/Delivery";
+import Dining from "../components/Dining";
+import NightLife from "../components/Nightlife";
+import Nutrition from "../components/Nutrition";
+
+// redux actions
+import { getRestaurant } from "../Redux/Reducer/restaurant/restaurant.action";
 
 const Home = () => {
+  const { type } = useParams();
+  const dispatch = useDispatch();
 
-    const {type} = useParams();
-
-    return(
-        <>
-            {type === "delivery" && <Delivery/>}
-            {type === "dining" && <Dining/>}
-            {type === "nightlife" && <NightLife/>}
-            {type === "nutrition" && <Nutrition/>}
-        </>
-    )
-}
+  useEffect(() => {
+    dispatch(getRestaurant());
+  }, []);
+  
+  return (
+    <div className="my-5">
+      {type === "delivery" && <Delivery />}
+      {type === "dining" && <Dining />}
+      {type === "nightlife" && <NightLife />}
+      {type === "nutrition" && <Nutrition />}
+    </div>
+  );
+};
 
 export default Home;

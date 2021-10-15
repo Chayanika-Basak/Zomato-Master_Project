@@ -1,23 +1,83 @@
-import React from 'react'
-import RestaurantNavbar from '../components/Navbar/restaurant.navbar'
-import ImageGrid from '../components/Restaurant/ImageGrid'
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { TiStarOutline } from "react-icons/ti";
+import { RiDirectionLine, RiShareForwardLine } from "react-icons/ri";
+import { BiBookmarkPlus } from "react-icons/bi";
 
+// components
+
+import ImageGrid from "../components/Restaurant/ImageGrid";
+import InfoButtons from "../components/Restaurant/InfoButtons";
+import RestaurantInfo from "../components/Restaurant/RestaurantInfo";
+import TabContainer from "../components/Restaurant/Tabs";
+import CartContainer from "../components/Cart/CartContainer";
+
+// Redux actions
+import { getSpecificRestaurant } from "../Redux/Reducer/restaurant/restaurant.action";
+import { getImage } from "../Redux/Reducer/Image/Image.action";
+import { getCart } from "../Redux/Reducer/Cart/Cart.action";
+import RestaurantNavbar from "../components/Navbar/restaurant.navbar";
 const RestaurantLayout = (props) => {
-    return (
-        <>
-            <RestaurantNavbar/>
-            <ImageGrid
-                images={[
-                    "https://b.zmtcdn.com/data/pictures/5/18662565/5ee36a86e57db8ab19b7d7e63a7affb9_featured_v2.jpg?fit=around|771.75:416.25&crop=771.75:416.25;*,*",
-                    "https://b.zmtcdn.com/data/pictures/chains/5/18662565/e50d23e4a2b2c56f5e63628729cf9fdd.jpg?fit=around|300:273&crop=300:273;*,*",
-                    "https://b.zmtcdn.com/data/pictures/chains/5/18662565/e277577f7d1f48d3939643da05ffcb97.jpg?fit=around|300:273&crop=300:273;*,*",
-                    "https://b.zmtcdn.com/data/pictures/chains/5/18662565/25a9f70575c875395af68da1d1ccc413.jpg?fit=around|300:273&crop=300:273;*,*",
-                    "https://b.zmtcdn.com/data/pictures/chains/5/18662565/e50d23e4a2b2c56f5e63628729cf9fdd.jpg?fit=around|300:273&crop=300:273;*,*"
-                ]}
-            />
-            {props.children}            
-        </>
-    )
-}
+  const [restaurant, setRestaurant] = useState({
+    images: [],
+    name: "",
+    cuising: "",
+    address: "",
+  });
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
-export default RestaurantLayout
+  useEffect(() => {
+    dispatch(getSpecificRestaurant(id)).then((data) => {
+      setRestaurant((prev) => ({
+        ...prev,
+        ...data.payload.restaurant,
+      }));
+
+      dispatch(getImage(data.payload.restaurant.photos)).then((data) =>
+        setRestaurant((prev) => ({ ...prev, ...data.payload.image }))
+      );
+    });
+
+    dispatch(getCart());
+  }, []);
+
+  return (
+    <>
+      {" "}
+      <RestaurantNavbar />
+      <div className="container mx-auto px-4 lg:px-20 pb-10 ">
+        <ImageGrid images={restaurant.images} />
+        <RestaurantInfo
+          name={restaurant?.name}
+          restaurantRating={restaurant?.rating || 0}
+          deliveryRating={restaurant?.rating || 0}
+          cuisine={restaurant?.cuising}
+          address={restaurant?.address}
+        />
+        <div className="my-4 flex flex-wrap gap-3">
+          <InfoButtons isActive>
+            <TiStarOutline /> Add Review
+          </InfoButtons>
+          <InfoButtons>
+            <RiDirectionLine /> Direction
+          </InfoButtons>
+          <InfoButtons>
+            <BiBookmarkPlus /> Bookmark
+          </InfoButtons>
+          <InfoButtons>
+            <RiShareForwardLine /> Share
+          </InfoButtons>
+        </div>
+        <div className="my-10">
+          <TabContainer></TabContainer>
+        </div>
+        <div className="relative">{props.children}</div>
+      </div>
+      <CartContainer />
+    </>
+  );
+};
+
+export default RestaurantLayout;
