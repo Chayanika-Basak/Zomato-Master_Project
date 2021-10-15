@@ -1,10 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux"
 import {AiFillStar} from 'react-icons/ai'
+import { getImage } from "../Redux/Reducer/Image/Image.action";
 
 const RestaurantCard = (props) => {
+
+    const [image, setImage] = useState({
+        images: [],
+      });
+      const dispatch = useDispatch();
+    
+      useEffect(() => {
+          if(props.photos)
+            props.photos &&
+            dispatch(getImage(props.photos)).then((data) =>
+            setImage(data.payload.image)
+          );
+      }, [props.photos]);
+    
     return (
         <>
-            <div className="bg-white m-1 p-1 w-full md:w-1/4 lg:w-1/4 transition duration-400 ease-in-out my-6 rounded-xl hover:border-gray-300 hover:shadow-xl">
+        <Link to={`/restaurant/${props._id}`} className="w-full md:w-1/4 lg:w-1/4 m-1 p-1 my-6">
+            <div className="bg-white transition duration-400 ease-in-out rounded-xl hover:border-gray-300 hover:shadow-xl">
                 <div className="w-full h-52 lg:h-56 relative">
                     <div className="absolute w-full flex items-end justify-between bottom-4">
                         <div className="flex flex-col gap-2 items-start">
@@ -43,6 +61,7 @@ const RestaurantCard = (props) => {
                     </div>
                 
             </div>
+            </Link>
         </>
     )
 }
