@@ -152,7 +152,7 @@ const Dining = () => {
                 <DiningCarousal/>
             </div>
         </div>
-        <div className="hidden md:flex items-center pl-12 lg:pl-20 gap-4 py-6 my-6">
+        <div className="hidden md:flex flex-wrap lg:flex items-center pl-12 lg:pl-20 gap-4 py-6 my-6">
 
                 <button className="rounded-md hover:bg-gray-100 border text-gray-400 border-gray-400 px-2 py-1">
                     <div className="flex items-center gap-2">
